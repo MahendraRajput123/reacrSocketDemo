@@ -35,7 +35,7 @@ const FaceDetection = () => {
         faceapi.matchDimensions(canvas, displaySize);
 
         const detectInterval = setInterval(async () => {
-            if (capturedImages.length >= 30) {
+            if (capturedImages.length >= 25) {
                 socketRef.current.emit('train', { name: localStorage.getItem('name') });
                 clearInterval(detectInterval);
                 releaseResources();
@@ -56,7 +56,7 @@ const FaceDetection = () => {
             } else {
                 setWarning('Face not detected!');
             }
-        }, 100); // Changed to 300 milliseconds
+        }, 100); // Changed to 250 milliseconds
 
         return () => clearInterval(detectInterval);
     }, [capturedImages]);
@@ -87,7 +87,7 @@ const FaceDetection = () => {
     }, []);
 
     useEffect(() => {
-        if (capturedImages.length >= 30) {
+        if (capturedImages.length >= 25) {
             socketRef.current.emit('train', { name: localStorage.getItem('name') });
             releaseResources();
             setCompleted(true);
@@ -98,7 +98,7 @@ const FaceDetection = () => {
         return (
             <div>
                 <h2>Thank you for face recognition!</h2>
-                <p>30 images have been captured and sent to the server.</p>
+                <p>25 images have been captured and sent to the server.</p>
             </div>
         );
     }
@@ -108,7 +108,7 @@ const FaceDetection = () => {
             <video ref={videoRef} width="640" height="480" autoPlay muted></video>
             <canvas ref={canvasRef} style={{ display: 'none' }}></canvas>
             <div style={{ color: 'red' }}>{warning}</div>
-            <div>Captured Images: {capturedImages.length}/30</div>
+            <div>Captured Images: {capturedImages.length}/25</div>
         </div>
     );
 };
@@ -155,7 +155,7 @@ export default FaceDetection;
 //     faceapi.matchDimensions(canvas, displaySize);
 
 //     const detectInterval = setInterval(async () => {
-//       if (capturedImages.length >= 30) {
+//       if (capturedImages.length >= 25) {
 //         clearInterval(detectInterval);
 //         releaseResources();
 //         if (mode === 'register') {
@@ -270,7 +270,7 @@ export default FaceDetection;
 //       <video ref={videoRef} width="640" height="480" autoPlay muted></video>
 //       <canvas ref={canvasRef} style={{ display: 'none' }}></canvas>
 //       <div style={{ color: 'red' }}>{warning}</div>
-//       <div>Captured Images: {capturedImages.length}/30</div>
+//       <div>Captured Images: {capturedImages.length}/25</div>
 //     </div>
 //   );
 // };
