@@ -270,7 +270,7 @@ export default FaceDetection;
 //       <video ref={videoRef} width="640" height="480" autoPlay muted></video>
 //       <canvas ref={canvasRef} style={{ display: 'none' }}></canvas>
 //       <div style={{ color: 'red' }}>{warning}</div>
-//       <div>Captured Images: {capturedImages.length}/25</div>
+//       <div>Captured Images: {capturedImages.length}/25</div> 
 //     </div>
 //   );
 // };
